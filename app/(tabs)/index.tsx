@@ -32,7 +32,8 @@ export default function Index() {
     </View>
   );
 }
-    <ThemedView style={styles.container}>
+{
+  (  <ThemedView style={styles.container}>
       <ThemedView style={styles.toggleContainer}>
         <TouchableOpacity 
           style={[styles.toggleButton, isLogin && styles.activeTab]} 
