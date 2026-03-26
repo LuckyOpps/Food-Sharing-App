@@ -1,49 +1,31 @@
+import { useState } from 'react';
+import { StyleSheet, TouchableOpacity } from 'react-native';
+
 import { ThemedText } from '@/components/themed-text';
 import { ThemedView } from '@/components/themed-view';
 import { useState } from 'react';
 import { StyleSheet, TouchableOpacity } from 'react-native';
-
 import Login from '../(auth)/login';
 import Register from '../(auth)/register';
 import FoodList from './foodList';
 
 export default function Index() {
-  const [screen, setScreen] = useState('login');
+  const [isLogin, setIsLogin] = useState(true);
 
   return (
     <ThemedView style={styles.container}>
-
-      {/* Toggle Buttons */}
       <ThemedView style={styles.toggleContainer}>
-
-        {/* Login */}
         <TouchableOpacity 
-          style={[styles.toggleButton, screen === 'login' && styles.activeTab]} 
-          onPress={() => setScreen('login')}
+          style={[styles.toggleButton, isLogin && styles.activeTab]} 
+          onPress={() => setIsLogin(true)}
         >
-          <ThemedText style={screen === 'login' ? styles.activeText : styles.inactiveText}>
-            Login
-          </ThemedText>
+          <ThemedText style={isLogin ? styles.activeText : styles.inactiveText}>Login</ThemedText>
         </TouchableOpacity>
-
-        {/* Register */}
         <TouchableOpacity 
-          style={[styles.toggleButton, screen === 'register' && styles.activeTab]} 
-          onPress={() => setScreen('register')}
+          style={[styles.toggleButton, !isLogin && styles.activeTab]} 
+          onPress={() => setIsLogin(false)}
         >
-          <ThemedText style={screen === 'register' ? styles.activeText : styles.inactiveText}>
-            Register
-          </ThemedText>
-        </TouchableOpacity>
-
-        {/* Food List */}
-        <TouchableOpacity 
-          style={[styles.toggleButton, screen === 'list' && styles.activeTab]} 
-          onPress={() => setScreen('list')}
-        >
-          <ThemedText style={screen === 'list' ? styles.activeText : styles.inactiveText}>
-            Food
-          </ThemedText>
+          <ThemedText style={!isLogin ? styles.activeText : styles.inactiveText}>Register</ThemedText>
         </TouchableOpacity>
 
       </ThemedView>
@@ -69,27 +51,26 @@ const styles = StyleSheet.create({
     marginHorizontal: 20,
     marginBottom: 20,
     borderRadius: 12,
-    backgroundColor: '#f0f0f0',
+    backgroundColor: '#f0f0f0', // You can use useThemeColor hook for this
     padding: 4,
   },
   toggleButton: {
     flex: 1,
-    paddingVertical: 10,
+    paddingVertical: 12,
     alignItems: 'center',
-    borderRadius: 10,
+    borderRadius: 12,
   },
   activeTab: {
-    backgroundColor: '#fff',
-    elevation: 2,
+    elevation: 4,
     shadowColor: '#000',
-    shadowOffset: { width: 0, height: 1 },
-    shadowOpacity: 0.2,
-    shadowRadius: 2,
+    shadowOffset: { width: 0, height: 2 },
+    shadowOpacity: 0.15,
+    shadowRadius: 4,
   },
   activeText: {
     fontWeight: '600',
   },
   inactiveText: {
     opacity: 0.6,
-  },
+  }
 });
