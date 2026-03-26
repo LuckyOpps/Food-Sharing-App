@@ -1,8 +1,14 @@
 <<<<<<< HEAD
+<<<<<<< HEAD
 import { useState } from 'react';
 import { View, Button } from 'react-native';
 
 =======
+=======
+import { useState } from 'react';
+import { StyleSheet, TouchableOpacity } from 'react-native';
+
+>>>>>>> 0a6a09c3021c20b947d9e83772f6da3bf36de59e
 import { ThemedText } from '@/components/themed-text';
 import { ThemedView } from '@/components/themed-view';
 import { useState } from 'react';
@@ -10,6 +16,7 @@ import { StyleSheet, TouchableOpacity } from 'react-native';
 >>>>>>> 1cbdebc2421de629be3ef1f2c6ee7c8de8f524fd
 import Login from '../(auth)/login';
 import Register from '../(auth)/register';
+import FoodList from './foodList';
 
 export default function Index() {
   const [isLogin, setIsLogin] = useState(true);
@@ -47,11 +54,16 @@ export default function Index() {
         >
           <ThemedText style={!isLogin ? styles.activeText : styles.inactiveText}>Register</ThemedText>
         </TouchableOpacity>
+
       </ThemedView>
 
+      {/* Screens */}
       <ThemedView style={{ flex: 1 }}>
-        {isLogin ? <Login /> : <Register />}
+        {screen === 'login' && <Login />}
+        {screen === 'register' && <Register />}
+        {screen === 'list' && <FoodList />}
       </ThemedView>
+
     </ThemedView>
   );
 }
@@ -71,17 +83,16 @@ const styles = StyleSheet.create({
   },
   toggleButton: {
     flex: 1,
-    paddingVertical: 10,
+    paddingVertical: 12,
     alignItems: 'center',
-    borderRadius: 10,
+    borderRadius: 12,
   },
   activeTab: {
-    backgroundColor: '#fff',
-    elevation: 2,
+    elevation: 4,
     shadowColor: '#000',
-    shadowOffset: { width: 0, height: 1 },
-    shadowOpacity: 0.2,
-    shadowRadius: 2,
+    shadowOffset: { width: 0, height: 2 },
+    shadowOpacity: 0.15,
+    shadowRadius: 4,
   },
   activeText: {
     fontWeight: '600',
